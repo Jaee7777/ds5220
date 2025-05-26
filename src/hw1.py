@@ -151,7 +151,7 @@ def problem5():
     selector.fit(X_train, y_train)
 
     top_features = selector.get_feature_names_out(X.columns)
-    print(f"Top 2 correlated features: {top_features}")
+    print(f"Top 2 correlated features with '{target_feature}': {top_features}")
 
     X_train_top2 = X_train_scaled[:, selector.get_support()]
     X_test_top2 = X_test_scaled[:, selector.get_support()]
@@ -162,6 +162,7 @@ def problem5():
 
     y_pred = model.predict(X_train_top2)
 
+    print(f"\t Linear Regression")
     rmse_train = mean_squared_error(y_train, y_pred, squared=False)
     print(f"Train set RMSE: {rmse_train}")
     r2_train = r2_score(y_train, y_pred)
@@ -196,9 +197,9 @@ def problem5():
 
     print(f"\t DecisionTreeRegressor")
     rmse_test = mean_squared_error(y_test, y_pred, squared=False)
-    print(f"Test set with Regularization RMSE: {rmse_test}")
+    print(f"Decision Tree Regressor RMSE: {rmse_test}")
     r2_test = r2_score(y_test, y_pred)
-    print(f"Test set with Regularization R2: {r2_test}")
+    print(f"Decision Tree Regressor R2: {r2_test}")
     return
 
 
